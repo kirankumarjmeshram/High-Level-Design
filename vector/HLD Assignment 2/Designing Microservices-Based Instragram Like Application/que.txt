@@ -1,0 +1,21 @@
+Problem Statement 3 : Designing a Microservices-Based Instagram-like Social Media Platform
+Context: Imagine you are part of a team tasked with designing a scalable and resilient social media platform similar to Instagram. The platform needs to handle various tasks such as user registration, content management (photos, videos), user interactions (likes, comments), messaging, notifications, and content discovery (hashtags, explore page).
+
+Task:
+
+Service Identification:
+Provide a high-level overview of the product you are designing.
+Identify and list the key services that should be part of this Instagram-like platform. For each service, briefly describe its responsibilities. Example: UserManagement Service
+Microservices Justification:
+Explain why a microservices architecture is suitable for this system. Discuss the advantages it offers in terms of scalability, fault tolerance, and independent deployment.
+Identify potential challenges and pitfalls when implementing microservices, such as data consistency, service coordination, and monitoring.
+APIs:
+Define the API contracts for each service, detailing how these services will interact with each other. Include considerations for both synchronous and asynchronous communication, and justify your choices.
+Content Management and Storage:
+Describe how you would manage and store user-generated content (photos, videos). Discuss the trade-offs between different storage solutions (e.g., cloud storage, CDN) and how you would ensure content availability and fast access times globally.
+Scaling and Caching Strategies:
+Describe how you would scale each service to handle high traffic scenarios, especially during peak usage times (e.g., when a new post goes viral).
+Propose caching strategies for different types of data (e.g., user profiles, content metadata, popular posts) to improve performance and reduce load on the backend services.
+Submission Requirements:
+
+Submit the Github repo that contains a document fulfilling the above asks

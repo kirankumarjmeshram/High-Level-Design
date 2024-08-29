@@ -1,0 +1,21 @@
+Problem Statement 1: Exploring Redis
+Note : This is a hands-on problem designed for practice, aimed at deepening your understanding of Redis. It is not directly related to the type of problems typically asked in interviews but interviewer can ask some fundamental question about redis hence this is good to know.
+
+Context: You have been introduced to Redis as an in-memory data structure store that can be used as a database and cache. To deepen your understanding of Redis, you will be tasked with hands-on exercises that explore its functions and capabilities.
+
+Task:
+
+Redis Basics:
+Set up a Redis server on your local machine or a cloud environment.
+Use Redis CLI to perform basic operations such as setting and getting key-value pairs, deleting keys, and checking the existence of keys.
+Data Structures in Redis:
+Experiment with different data types in Redis such as strings, lists, sets, and hashes.
+Implement a small application that simulates a leaderboard using Redis sorted sets. Store user scores and retrieve the top 10 users.
+Redis as a Cache:
+Implement a caching layer in a simple web application (e.g., a blog or a product catalog) using Redis.
+Set up expiration times for the cached data and demonstrate how Redis can improve the performance of your application.
+Submission Requirements:
+
+Submit the Github repo that includes following :
+A README file explaining your setup process, and the commands or code snippets you used for each task.
+A short reflection on the advantages and challenges you encountered while working with Redis.

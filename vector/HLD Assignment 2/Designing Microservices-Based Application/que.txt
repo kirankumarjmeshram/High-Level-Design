@@ -1,0 +1,18 @@
+Problem Statement 2: Designing a Microservices-Based Application
+Context: Imagine you are part of a team tasked with designing a scalable and resilient hotel booking system similar to popular platforms like Booking.com or Airbnb. The system needs to handle various tasks such as user registration, hotel listings management, booking processing, payments, and notifications.
+
+Task:
+
+Service Identification:
+Provide a high-level overview of the product you are designing.
+Identify and list the key services that should be part of this hotel booking system. For each service, briefly describe its responsibilities. Example: UserManagement Service
+Microservices Justification:
+Explain why a microservices architecture is suitable for this system. Discuss the advantages it offers in terms of scalability, and independent deployment.
+Identify potential challenges and pitfalls when implementing microservices, such as data consistency, service coordination, and monitoring.
+APIs:
+Define the API contracts for each services.
+Scaling and Caching Strategies:
+Describe how you would scale each service to handle high traffic scenarios. What caching strategies would you implement to improve performance and reduce load on the services?
+Submission Requirements:
+
+Submit the Github repo that contains a document fulfilling the above asks
