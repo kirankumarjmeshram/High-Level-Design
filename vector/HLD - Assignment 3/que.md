@@ -1,4 +1,5 @@
 **Social Media Application Data Management**
+
 You are tasked with selecting a database for a new social media application that needs to store user profiles, posts, comments, likes, and friend relationships. The application must support complex queries, such as finding mutual friends, displaying a feed of recent posts, and suggesting friends.
   
   a. Recommend a database solution that fits the needs of this social media application. Consider SQL, NoSQL (document, graph, column-family), and multi-model databases.
