@@ -1,0 +1,67 @@
+Architecting Resilient Systems: Scalability, Fault Tolerance, and the CAP Theorem
+
+Question 1:
+Scenario: You are designing a highly scalable and reliable e-commerce platform that expects high traffic during flash sales.
+
+Tasks:
+
+Scaling Strategy:
+Identify and explain which scaling strategy (vertical or horizontal) you would choose for handling a sudden surge in traffic. Justify your choice with specific examples of how the system would scale.
+Discuss how you would use caching to improve scalability and reduce load on the database. Include details on what types of data you would cache and why.
+Load Balancing:
+Design a load balancing strategy for the platform. Discuss different algorithms (e.g., round-robin, least connections) and choose the most suitable one. Explain your choice and how it would handle varying traffic patterns.
+Handling Failures:
+Propose a failover mechanism for the database to ensure the platform remains operational if the primary database fails. Describe the failover process and any trade-offs involved.
+
+
+Question 2:
+Scenario: You are tasked with designing the backend for a critical real-time financial trading application that must operate with near-zero downtime.
+
+Tasks:
+
+Fault Tolerance:
+Describe how you would implement redundancy in this system to avoid single points of failure. Include both hardware and software redundancy measures.
+Explain how you would use the circuit breaker pattern in your design to prevent cascading failures in the system. Provide a scenario in which the circuit breaker would be triggered.
+High Availability:
+Propose a strategy for achieving high availability for the application. Consider the use of geographically distributed data centers and discuss how data consistency would be managed across these centers.
+Explain the differences between active-active and active-passive configurations and recommend one for this scenario. Justify your recommendation with pros and cons.
+Monitoring and Recovery:
+Design a monitoring and alert system for detecting failures in the application. Identify key metrics to monitor (e.g., response times, error rates) and describe how alerts would be triggered and handled.
+
+
+Question 3: Real-World Platforms Analysis
+Analyze the CAP properties of the following platforms:
+Google Drive: Discuss which two properties Google Drive prioritizes and provide reasons for your answer.
+Netflix: How does Netflix handle the challenges of the CAP Theorem? Which properties does it prioritize?
+Amazon DynamoDB: Explain how Amazon DynamoDB addresses the CAP Theorem in its architecture. Which two properties does it prioritize, and what compromises does it make?
+
+
+Question 4: Scenario-Based Questions
+Scenario Analysis:
+Imagine a global online food delivery platform that connects users with local restaurants. During a network partition, some regions lose communication with the central server.
+a. What happens if the system prioritizes Consistency and Partition Tolerance (CP)? Describe the user experience and potential issues.
+b. What happens if the system prioritizes Availability and Partition Tolerance (AP)? Describe the potential impact on orders and consistency.
+Cloud Storage Services:
+Cloud storage services like Dropbox need to sync files across devices and maintain availability.
+a. Discuss how Dropbox handles network partitions. Which properties of CAP does it prioritize?
+b. What trade-offs does Dropbox make to provide a seamless user experience when syncing files?
+
+
+Question 5: Trade-Offs and Implications
+Trade-Off Analysis:
+For a real-time stock trading platform, discuss the implications of choosing Consistency over Availability during network partitions. How could this impact traders and the overall market?
+
+
+Question 6: Design Decision
+Design Decision:
+You are tasked with designing a chat application that works globally, similar to WhatsApp.
+a. Describe which CAP properties you would prioritize and why.
+b. If network partitions occur, how would your design handle message delivery and consistency?
+
+
+Question 7: Critical Thinking
+Critical Thinking:
+Many social media platforms prioritize Availability and Partition Tolerance over Consistency. Explain why this approach is generally acceptable for social media but might not be suitable for financial applications.
+
+
+Question 8 : Implement a load balancer using round robin algorithm
