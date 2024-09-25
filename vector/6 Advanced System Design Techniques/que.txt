@@ -1,0 +1,124 @@
+Instructions
+Scenario: Building a Distributed Cloud Storage Platform
+You have been hired as a lead architect for a company that is building a cloud-based storage platform similar to Dropbox or Google Drive. This system allows users to upload, download, and manage files through web and mobile applications. The system should handle millions of users and must be highly scalable, reliable, and secure. The platform will consist of multiple microservices for various operations like file management, user authentication, and billing.
+
+The key components of the system are:
+
+Distributed File System (DFS):
+All user data must be stored in a distributed file system. The DFS should handle large volumes of data, ensure fault tolerance, and provide efficient access to files.
+API Gateway:
+Users interact with the system through an API Gateway that handles routing of requests to the appropriate microservices.
+The API Gateway should implement rate limiting to protect against abuse or accidental overloading of the system.
+Rate Limiting:
+The system should impose rate limits to prevent individual users from overloading the system. This includes limiting the number of file uploads/downloads per minute.
+Monitoring & Logging:
+The platform should have comprehensive monitoring and logging to track system health, detect performance bottlenecks, and troubleshoot issues. Logs should capture key events (file uploads/downloads, user activity, API errors), while monitoring should track key performance metrics like file access latency, storage usage, and request rates.
+Part 1: System Design
+Question: Design a system architecture for the cloud storage platform using the following components:
+
+DFS to store user files.
+API Gateway to handle incoming requests.
+Rate Limiting to restrict API calls.
+Monitoring and Logging to observe system health and troubleshoot issues.
+Your design should include:
+
+Storage Layer:
+Describe the role of the Distributed File System (DFS) in this platform. What are the key characteristics that the DFS must have (e.g., consistency, fault tolerance, replication)?
+Which type of DFS would you choose (e.g., HDFS, Amazon S3, Google Cloud Storage) and why?
+API Gateway:
+Explain how the API Gateway will manage routing requests to the backend services (e.g., file upload, file download, user authentication).
+How will the API Gateway handle authentication and authorization?
+Rate Limiting:
+Propose a rate-limiting strategy for API requests. Users should be limited to 50 file uploads per minute and 100 file downloads per minute.
+How will you ensure the rate-limiting strategy works across multiple instances of the API Gateway in a distributed environment?
+Monitoring and Logging:
+Identify the key metrics you would monitor to ensure the system is performing efficiently (e.g., latency of file access, error rates, API request throughput).
+Propose a logging strategy that captures relevant events. What specific information would you include in the logs, and how will you ensure that logs are centralized and searchable?
+
+
+
+Part 2: Implementation Challenges
+Question 1 (DFS):
+
+Your distributed file system (DFS) is distributed across multiple regions for better availability. Describe how you would handle replication and fault tolerance in this DFS. How do you ensure that user data is always available even in case of regional failures?
+
+Hints:
+
+Consider replication across regions and ensure consistency of files across replicas.
+Think about how eventual consistency vs. strong consistency impacts user experience in a cloud storage service.
+Question 2 (API Gateway with Rate Limiting):
+
+You are tasked with implementing rate limiting on the API Gateway to limit file uploads and downloads. Use a sliding window algorithm to implement rate limiting and explain how you would store the rate limit data in a centralized store like Redis.
+
+Hints:
+
+Implement the rate limit using Redis commands like ZADD and ZRANGEBYSCORE.
+Use the sliding window technique to ensure that users are only allowed a certain number of API calls within a minute.
+Follow-up:
+
+How will you handle rate limits in a distributed environment where multiple instances of the API Gateway are running?
+Question 3 (Monitoring & Logging):
+
+As the system grows, you notice that file download latencies are increasing for some users. Describe how you would use monitoring and logs to identify the cause of the issue.
+What metrics would you track (e.g., latency, throughput)?
+What log entries would be useful for diagnosing the root cause (e.g., user ID, request timestamps, request paths)?
+How would you visualize this data for better insights?
+Part 3: Hands-On Rate Limiting Implementation
+Implementation Question:
+
+Using Redis and a programming language of your choice, implement a Sliding Window rate limiter for the API Gateway. The goal is to limit the number of file uploads to 50 per minute.
+
+Steps to Follow:
+Store the request timestamps in Redis for each user.
+Track requests over a rolling window (sliding window) of the last 60 seconds.
+If the request count exceeds the limit, deny the request; otherwise, allow it.
+Considerations:
+Implement logic to clean up old request data in Redis.
+Ensure that the rate limiter can scale across multiple API Gateway instances.
+Sample Code Example:
+import time
+import redis
+
+# Initialize Redis connection
+redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+def is_rate_limited(user_id):
+    current_time = int(time.time())
+    window_size = 60  # sliding window of 60 seconds
+    rate_limit = 50  # 50 requests allowed per minute
+
+    # Redis key for the user
+    redis_key = f"user:{user_id}:uploads"
+
+    # Remove old entries (older than window size)
+    redis_client.zremrangebyscore(redis_key, 0, current_time - window_size)
+
+    # Get the count of requests within the window
+    request_count = redis_client.zcount(redis_key, current_time - window_size, current_time)
+
+    if request_count >= rate_limit:
+        return True  # User is rate limited
+
+    # Add the new request timestamp to the sorted set
+    redis_client.zadd(redis_key, {current_time: current_time})
+
+    return False  # User is not rate limited
+
+# Test the rate limiter
+if is_rate_limited("user_123"):
+    print("Rate limit exceeded")
+else:
+    print("Request allowed")
+
+Part 4: Scalability and Fault Tolerance
+Question: The platform is expanding rapidly, and you need to ensure it scales smoothly across regions. Explain how you would design the system to handle scale, load balancing, and fault tolerance across the following components:
+
+Distributed File System (DFS)
+API Gateway
+Rate Limiting Service
+Monitoring and Logging Infrastructure
+Hints:
+
+Think about horizontal scaling of the API Gateway and DFS.
+For rate limiting, ensure that Redis is scalable and highly available across multiple regions.
+Use load balancing across API Gateway instances and consider caching mechanisms to reduce load on the DFS.
